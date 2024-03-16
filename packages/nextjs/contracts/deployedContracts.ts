@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   51: {
     MockToken: {
-      address: "0xdCE15A1d3dE15431CEab22Fc906E7396a2569c72",
+      address: "0x7C7AB8D85f87BC3065BA63e0D773Ed49B5C7EF31",
       abi: [
         {
           inputs: [],
@@ -354,7 +354,7 @@ const deployedContracts = {
       },
     },
     SimpleAgreement: {
-      address: "0x70E5Db80338522F5C9A46Eb85AAA11ae501eB34b",
+      address: "0xC5B85b03A4284BE0Ef979034d658e2E685Ba3edA",
       abi: [
         {
           inputs: [],
@@ -570,7 +570,7 @@ const deployedContracts = {
       },
     },
     StormBitCore: {
-      address: "0xf9e46fb24842635604de456681148b951F8e2CA9",
+      address: "0xA558f8EA2C0D284027c3D430c0dEDA96250295A2",
       abi: [
         {
           inputs: [
@@ -899,7 +899,7 @@ const deployedContracts = {
       },
     },
     StormBitLending: {
-      address: "0xa469458A8De06c6433407DD9c1e82A18126e451f",
+      address: "0x29840eFC5f8727B1A2c852298B0d0f69Ab2d87AA",
       abi: [
         {
           inputs: [],
@@ -3264,7 +3264,7 @@ const deployedContracts = {
       },
     },
     StormBitLendingVotes: {
-      address: "0x4dD955166E2d614dd30951b0b7D1788aeFbA02AB",
+      address: "0x15c454Fb01b37F8eB45c166bA8e7957d37AEc2a3",
       abi: [
         {
           inputs: [],

@@ -44,7 +44,7 @@ export const AddressInfoDropdown = ({
 
   return (
     <>
-      <details ref={dropdownRef} className="leading-3 dropdown dropdown-end">
+      <details ref={dropdownRef} className="leading-3 text-white dropdown dropdown-end">
         <summary
           tabIndex={0}
           className=" flex items-center border border-solid rounded-[13px] btn-sm pl-0 pr-2 dropdown-toggle gap-0 !h-auto"
@@ -55,7 +55,7 @@ export const AddressInfoDropdown = ({
         </summary>
         <ul
           tabIndex={0}
-          className="dropdown-content menu z-[2] p-2 mt-2 shadow-center shadow-accent bg-base-200 rounded-box gap-1"
+          className="dropdown-content menu z-[2] p-2 mt-2 shadow-center shadow-accent bg-base-200 rounded-box gap-1 bg-transparent"
         >
           <NetworkOptions hidden={!selectingNetwork} />
           <li className={selectingNetwork ? "hidden" : ""}>

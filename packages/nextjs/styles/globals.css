@@ -23,10 +23,23 @@ p {
   margin: 1rem 0;
 }
 
-.btn {
-  @apply shadow-md;
+
+main{
+  background: radial-gradient(136.07% 90.79% at 10.34% 118.9%, rgba(197, 255, 253, 0.46) 0%, rgba(246, 248, 251, 0.46) 100%), radial-gradient(90.3% 61.32% at 83.83% 95.17%, #EEE4FE 0%, #F6F8FB 100%);
 }
 
-.btn.btn-ghost {
-  @apply shadow-none;
+input{
+  border-radius: 5px;
+  border: 1px solid #EAEBEF;
+}
+
+.container-market{
+  height: 80%;
+}
+
+.bg-letter{
+  background: var(--gradient2, linear-gradient(89deg, #AD92F5 -10.93%, #61BEFF 121.88%));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

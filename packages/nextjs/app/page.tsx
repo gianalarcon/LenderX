@@ -57,8 +57,8 @@ const Home: NextPage = () => {
       <div className="flex flex-col items-stretch justify-center pt-10 gap-80">
         <div className="flex justify-between gap-28">
           <div className="w-[964px] my-24">
-            <span className="font-bold text-white text-9xl">STORM</span>
-            <span className="font-bold text-9xl text-gradient">BIT.</span>
+            <span className="font-bold text-white text-9xl">LENDER</span>
+            <span className="font-bold text-9xl text-gradient">X.</span>
             <p className="text-4xl text-[#B5B5B5]">Democratizing Lending with Collective Decision-Making</p>
           </div>
         </div>
@@ -136,7 +136,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div> */}
-      <div className="flex flex-col items-center gap-12 mt-60">
+      {/* <div className="flex flex-col items-center gap-12 mt-60">
         <div className="flex gap-6">
           <h2 className="text-5xl font-bold text-white">Tweets</h2>
           <Image src="/tweets.png" alt="tweets" width={58} height={58}></Image>
@@ -153,8 +153,8 @@ const Home: NextPage = () => {
             Follow us
           </button>
         </div>
-      </div>
-      <div className="flex flex-col items-center gap-12 mt-52 bg-form pb-36">
+      </div> */}
+      {/* <div className="flex flex-col items-center gap-12 mt-52 bg-form pb-36">
         <div className="flex flex-col justify-center items-center gap-20 w-[1514px] h-[444px] container-subscribe">
           <h2 className="text-5xl font-bold text-white">Keep Updated</h2>
           <div className="flex gap-6">
@@ -165,7 +165,7 @@ const Home: NextPage = () => {
             <button className="w-[254px] h-[91px] bg-white text-2xl rounded-[15px]">Subscribe</button>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

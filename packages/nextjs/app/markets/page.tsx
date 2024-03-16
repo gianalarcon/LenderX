@@ -10,10 +10,6 @@ import Table from "~~/components/Table/table";
 const BlockExplorer: NextPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // const handleSubmit = () => {
-  //   setIsModalOpen(false);
-  // };
-
   return (
     <>
       <div className="flex flex-col gap-6 rounded-[5px] w-[1800px] h-[700px] bg-white p-10">
@@ -25,7 +21,12 @@ const BlockExplorer: NextPage = () => {
             <span className="text-2xl text-[#4A5056] font-bold">/Markets</span>
           </div>
           <div className="flex items-center justify-center gap-2">
-            <input placeholder="search pool name" className="px-4 py-2"></input>
+            <div className="flex rounded-[5px] border border-solid border-[#EAEBEF] px-4 justify-center items-center">
+              <div>
+                <Image src="/search.png" alt="search" width={20} height={20}></Image>
+              </div>
+              <input placeholder="search pool name" className="px-4 py-2 border-none focus:outline-none"></input>
+            </div>
             <Button
               onClick={() => {
                 setIsModalOpen(true);

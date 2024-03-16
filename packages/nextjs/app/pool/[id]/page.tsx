@@ -1,21 +1,44 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { useParams } from "next/navigation";
+import { formatUnits } from "viem";
+import { useContractReads } from "wagmi";
 import Strategy from "~~/components/Strategy/Strategy";
+import { useScaffoldContract, useScaffoldContractRead, useScaffoldEventHistory } from "~~/hooks/scaffold-eth";
 
 function Page() {
+  const params = useParams();
+
+  const poolAddress: string = params.id;
   const handleGoBack = () => {
     window.history.back();
   };
+  const { data: LendingContract } = useScaffoldContract({
+    contractName: "StormBitLending",
+  });
+  const { data: poolData, isLoading: poolsLoading } = useContractReads({
+    contracts: LendingContract
+      ? [
+          {
+            address: poolAddress,
+            abi: LendingContract.abi,
+            functionName: "getPoolData",
+          },
+        ]
+      : [],
+  });
 
   return (
-    <div className="mx-12 my-10 ">
+    <div className="mx-12 mb-8">
       <div className="flex gap-3 my-8" onClick={handleGoBack} style={{ cursor: "pointer" }}>
         <Image src="/arrow-left.png" alt="arrow" width={20} height={16}></Image>
         <span>Go back</span>
       </div>
-      <h1 className="text-[#17344F] text-4xl font-bold">
-        Pool Name - <span> Id</span>
+      <h1 className="text-[#17344F] text-4xl font-bold flex">
+        {poolData ? poolData[0]?.result?.name : " Pool Name"} -
+        <div className=" text-ellipsis overflow-hidden w-[30%]"> {poolAddress}</div>
       </h1>
       <div className="flex ">
         <div className="flex flex-col gap-6 my-9">
@@ -38,11 +61,15 @@ function Page() {
             <div className="flex gap-24">
               <div className="flex flex-col w-[250px]">
                 <span>Total borrowed</span>
-                <span className="font-bold">$23.08M</span>
+                <span className="font-bold">
+                  {poolData ? formatUnits(poolData?.[0]?.result?.totalBorrowed || 0n, 18) : "$0"}
+                </span>
               </div>
               <div className="flex flex-col w-[250px]">
                 <span>Total Supplied</span>
-                <span className="font-bold">$23.08M</span>
+                <span className="font-bold">
+                  {poolData ? formatUnits(poolData?.[0]?.result?.totalSupplied || 0n, 18) : "$0"}
+                </span>
               </div>
             </div>
             <div className="flex gap-24">
@@ -65,7 +92,7 @@ function Page() {
             </ul>
           </div>
         </div>
-        <Strategy></Strategy>
+        <Strategy poolAddress={poolAddress}></Strategy>
       </div>
       <div className="flex flex-col gap-6">
         <span className="text-[#17344F] font-bold">Supported Tokens</span>

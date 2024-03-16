@@ -4,7 +4,10 @@ import React, { useEffect, useState } from "react";
 import Borrow from "../Borrow/Borrow";
 import Supply from "../Supply/Supply";
 
-function Strategy() {
+interface StrategyProps {
+  poolAddress: string;
+}
+function Strategy({ poolAddress }: StrategyProps) {
   const [selectedView, setSelectedView] = useState<string>("supply");
 
   const handleButtonClick = (view: string) => {
@@ -14,9 +17,9 @@ function Strategy() {
   const renderContent = () => {
     switch (selectedView) {
       case "supply":
-        return <Supply />;
+        return <Supply poolAddress={poolAddress} />;
       case "borrow":
-        return <Borrow />;
+        return <Borrow poolAddress={poolAddress} />;
       default:
         return null;
     }

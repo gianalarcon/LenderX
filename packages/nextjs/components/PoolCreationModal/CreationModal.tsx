@@ -4,6 +4,7 @@ import Button from "../Button/Button";
 import "./CreationModal.css";
 import toast from "react-hot-toast";
 import { parseEther } from "viem";
+import { useAccount } from "wagmi";
 import { useScaffoldContract, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
 interface PoolConfig {
@@ -21,12 +22,12 @@ interface PoolConfig {
 interface ModalProps {
   setIsModalOpen: () => void;
 }
-
 const CreationModal: React.FC<ModalProps> = ({ setIsModalOpen }) => {
+  const { address } = useAccount();
   const [showInfo, setShowInfo] = useState(false);
   const [poolConfig, setPoolConfig] = useState<PoolConfig>({
     name: "",
-    owner: "",
+    owner: address ? address : "",
     minCreditScore: BigInt(0),
     maxAmountOfStakers: BigInt(0),
     quorum: BigInt(0),
@@ -35,6 +36,7 @@ const CreationModal: React.FC<ModalProps> = ({ setIsModalOpen }) => {
     amount: BigInt(0),
     agreements: [false, false, false],
   });
+
   const { data: tokenContract } = useScaffoldContract({
     contractName: "MockToken",
   });
@@ -61,7 +63,7 @@ const CreationModal: React.FC<ModalProps> = ({ setIsModalOpen }) => {
         votingQuorum: BigInt(poolConfig.quorum),
         maxPoolUsage: BigInt(poolConfig.maxPoolUsage),
         votingPowerCoolDown: BigInt(poolConfig.votingPowerCooldown),
-        initAmount: parseEther("5000"),
+        initAmount: parseEther(poolConfig.amount.toString()),
         initToken: tokenContract ? tokenContract.address : "",
         supportedAssets: [tokenContract ? tokenContract.address : ""],
         supportedAgreements: [simpleAgreementContract ? simpleAgreementContract.address : ""],
@@ -75,9 +77,6 @@ const CreationModal: React.FC<ModalProps> = ({ setIsModalOpen }) => {
     blockConfirmations: 0,
   });
 
-  console.log(createPoolLoading);
-  console.log(data);
-
   const { writeAsync: approveTokens, isSuccess: approveTokensSuccess } = useScaffoldContractWrite({
     contractName: "MockToken",
     functionName: "approve",
@@ -86,15 +85,14 @@ const CreationModal: React.FC<ModalProps> = ({ setIsModalOpen }) => {
     onBlockConfirmation: txReceipt => {
       toast.success(`Tokens approved successfully with hash ${txReceipt.transactionHash as string}`);
       createPool();
+      setIsModalOpen();
     },
     blockConfirmations: 0,
   });
 
-  console.log(approveTokens);
-
   const handleSubmit = () => {
-    createPool();
-    setIsModalOpen();
+    // createPool();
+    // setIsModalOpen();
   };
 
   return (
@@ -111,7 +109,7 @@ const CreationModal: React.FC<ModalProps> = ({ setIsModalOpen }) => {
               X
             </button>
           </div>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <form className="flex flex-col gap-4">
             <div className="flex-1">
               <label htmlFor="campo1">Pool name</label>
               <input
@@ -125,7 +123,14 @@ const CreationModal: React.FC<ModalProps> = ({ setIsModalOpen }) => {
             </div>
             <div className="flex-1">
               <label htmlFor="campo1">Owner</label>
-              <input type="text" id="campo1" name="campo1" className="w-full p-2 border" />
+              <input
+                value={poolConfig.owner}
+                onChange={e => setPoolConfig({ ...poolConfig, owner: e.target.value })}
+                type="text"
+                id="campo1"
+                name="campo1"
+                className="w-full p-2 border"
+              />
             </div>
             <div className="flex gap-16">
               <div className="flex-1">
@@ -188,7 +193,14 @@ const CreationModal: React.FC<ModalProps> = ({ setIsModalOpen }) => {
             </div>
             <div className="flex-1">
               <label htmlFor="campo1">Amount</label>
-              <input type="text" id="campo1" name="campo1" className="w-full p-2 border" />
+              <input
+                type="text"
+                id="campo1"
+                name="campo1"
+                className="w-full p-2 border"
+                value={String(poolConfig.amount)}
+                onChange={e => setPoolConfig({ ...poolConfig, amount: BigInt(e.target.value ?? 0) })}
+              />
             </div>
             <span>Agreement supported</span>
             <div className="flex gap-16">

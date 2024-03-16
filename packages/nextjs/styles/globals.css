@@ -23,10 +23,55 @@ p {
   margin: 1rem 0;
 }
 
-.btn {
-  @apply shadow-md;
+
+main{
+  background: radial-gradient(136.07% 90.79% at 10.34% 118.9%, rgba(197, 255, 253, 0.46) 0%, rgba(246, 248, 251, 0.46) 100%), radial-gradient(90.3% 61.32% at 83.83% 95.17%, #EEE4FE 0%, #F6F8FB 100%);
 }
 
-.btn.btn-ghost {
-  @apply shadow-none;
+input{
+  border-radius: 5px;
+  border: 1px solid #EAEBEF;
+}
+
+.container-market{
+  height: 80%;
+}
+
+.bg-letter{
+  background: var(--gradient2, linear-gradient(89deg, #AD92F5 -10.93%, #61BEFF 121.88%));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+
+  @layer utilities {
+    .text-gradient {
+      background: linear-gradient(7deg, #805FD8 10.78%, #CBB7FF 64.88%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+.container-stats{
+  box-shadow: 0px 0px 21.1px -15px #181C20;
+}
+
+.shadow-lending{
+  box-shadow: 0px 0px 21.6px -1px #E1ECF9;
+}
+
+.margin-top{
+  margin-top: 50px;
+}
+
+.height-market{
+  height: fit-content;
+}
+
+.background-svg {
+  fill: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(87.5px);
 }

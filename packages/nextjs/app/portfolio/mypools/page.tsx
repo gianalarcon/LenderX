@@ -55,6 +55,8 @@ function MyPools() {
           ]
         : [],
   });
+  console.log("🚀 ~ MyPools ~ pools:", pools);
+
   useEffect(() => {
     if (pools && pools.length > 0 && poolAddresses) {
       const poolLen = pools.length / 2;

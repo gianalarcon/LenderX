@@ -43,3 +43,22 @@ input{
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+
+
+  @layer utilities {
+    .text-gradient {
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      background-image: linear-gradient(88.64deg, #AD92F5 -10.93%, #61BEFF 121.88%);
+    }
+  }
+
+  .container-stats{
+    box-shadow: 0px 0px 21.1px -15px #181C20;
+  }
+
+.shadow-lending{
+  box-shadow: 0px 0px 21.6px -1px #E1ECF9;
+}

@@ -1,16 +1,68 @@
 import { useState } from "react";
 import Image from "next/image";
 import Button from "../Button/Button";
+import toast from "react-hot-toast";
 import "./CreationModal.css";
+import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
-interface Modalprops {
-  setIsModalOpen: () => void;
-  handleSubmit: () => void;
+interface PoolConfig {
+  name: string;
+  owner: string;
+  minCreditScore: number;
+  maxAmountOfStakers: number;
+  minQuorum: number;
+  maxPoolUsage: number;
+  votingPowerCooldown: number;
+  amount: number;
+  agreements: boolean[];
 }
 
-function CreationModal(props: Modalprops) {
+interface ModalProps {
+  setIsModalOpen: () => void;
+}
+
+const CreationModal: React.FC<ModalProps> = ({ setIsModalOpen }) => {
   const [showInfo, setShowInfo] = useState(false);
-  const { setIsModalOpen, handleSubmit } = props;
+  const [poolConfig, setPoolConfig] = useState<PoolConfig>({
+    name: "",
+    owner: "",
+    minCreditScore: 0,
+    maxAmountOfStakers: 0,
+    minQuorum: 0,
+    maxPoolUsage: 0,
+    votingPowerCooldown: 0,
+    amount: 0,
+    agreements: [false, false, false],
+  });
+
+  const {
+    writeAsync: createPool,
+    isLoading: createPoolLoading,
+    data,
+  } = useScaffoldContractWrite({
+    contractName: "StormBit",
+    functionName: "createPool",
+    args: [
+      poolConfig.name,
+      {
+        minCreditScore: BigInt(poolConfig.minCreditScore),
+        quorum: BigInt(1),
+        votingPowerCooldown: BigInt(1),
+        maxAmountOfStakers: BigInt(1),
+        maxPoolUsage: BigInt(1),
+      },
+    ],
+    value: BigInt(0),
+    onBlockConfirmation: txReceipt => {
+      toast.success(`Pool created successfully with hash ${txReceipt.transactionHash as string}`);
+      setIsModalOpen();
+    },
+    blockConfirmations: 0,
+  });
+
+  const handleSubmit = () => {
+    setIsModalOpen();
+  };
   return (
     <div className="container-modal">
       <div className="gap-4 content-modal">
@@ -28,7 +80,14 @@ function CreationModal(props: Modalprops) {
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div className="flex-1">
               <label htmlFor="campo1">Pool name</label>
-              <input type="text" id="campo1" name="campo1" className="w-full p-2 border" />
+              <input
+                type="text"
+                id="campo1"
+                name="campo1"
+                className="w-full p-2 border"
+                value={poolConfig.name}
+                onChange={e => setPoolConfig({ ...poolConfig, name: e.target.value })}
+              />
             </div>
             <div className="flex-1">
               <label htmlFor="campo1">Owner</label>
@@ -128,13 +187,16 @@ function CreationModal(props: Modalprops) {
           </form>
         </div>
         <div className="flex items-center justify-center">
-          <Button onClick={handleSubmit} size="large">
+          <Button
+            onClick={createPool}
+            size="large"
+          >
             Create Pool
           </Button>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default CreationModal;

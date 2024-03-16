@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
+import { EthereumWalletConnectors } from "@dynamic-labs/ethereum";
+import { DynamicContextProvider } from "@dynamic-labs/sdk-react-core";
 import { Space_Grotesk } from "@next/font/google";
 import { RainbowKitProvider, darkTheme, lightTheme } from "@rainbow-me/rainbowkit";
 import { Toaster } from "react-hot-toast";
@@ -34,7 +36,7 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
       <div className="flex flex-col min-h-screen bg-landing">
         <Header />
         <main className={`flex flex-col items-center flex-1 margin-top ${spaceGrotesk.className}`}>{children}</main>
-        <Footer />
+        {/* <Footer /> */}
       </div>
       <Toaster />
     </>
@@ -45,15 +47,22 @@ export const ScaffoldEthAppWithProviders = ({ children }: { children: React.Reac
   const { isDarkMode } = useDarkMode();
 
   return (
-    <WagmiConfig config={wagmiConfig}>
-      <ProgressBar />
-      <RainbowKitProvider
-        chains={appChains.chains}
-        avatar={BlockieAvatar}
-        theme={isDarkMode ? darkTheme() : lightTheme()}
-      >
-        <ScaffoldEthApp>{children}</ScaffoldEthApp>
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <DynamicContextProvider
+      settings={{
+        environmentId: "e67d5da1-bb11-4b3b-9da3-05c68a758856",
+        walletConnectors: [EthereumWalletConnectors],
+      }}
+    >
+      <WagmiConfig config={wagmiConfig}>
+        <ProgressBar />
+        <RainbowKitProvider
+          chains={appChains.chains}
+          avatar={BlockieAvatar}
+          theme={isDarkMode ? darkTheme() : lightTheme()}
+        >
+          <ScaffoldEthApp>{children}</ScaffoldEthApp>
+        </RainbowKitProvider>
+      </WagmiConfig>
+    </DynamicContextProvider>
   );
 };

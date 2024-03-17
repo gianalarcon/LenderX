@@ -7,3 +7,7 @@ deploying "StormBitLendingVotes" (tx: 0x3fda6b8dfbfa24c4b8a691bb22b814b6afc9c5b1
 deploying "StormBitCore" (tx: 0x4dc5ce86a4d36170136281bb96969170de1d73a987d72123fa4272804f2028dd)...: deployed at 0x101e9509097Ca80dE713C07F6e48ff0342a02fEA with 69
 
 Check here: https://explorer.mainnet.aurora.dev/
+
+
+Video Demo: https://www.loom.com/share/c76a156dd9f143bd8d58cb53eac3057a
+Note: Video has part 1 and part 2

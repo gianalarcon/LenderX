@@ -10,4 +10,5 @@ Check here: https://explorer.mainnet.aurora.dev/
 
 
 Video Demo: https://www.loom.com/share/c76a156dd9f143bd8d58cb53eac3057a
+
 Note: Video has part 1 and part 2

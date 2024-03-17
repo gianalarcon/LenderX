@@ -56,18 +56,18 @@ export const ScaffoldEthAppWithProviders = ({ children }: { children: React.Reac
         walletConnectors: [EthereumWalletConnectors],
       }}
     >
-    //   <DynamicWagmiConnector>
-    <WagmiConfig config={wagmiConfig}>
-      <ProgressBar />
-      <RainbowKitProvider
-        chains={appChains.chains}
-        avatar={BlockieAvatar}
-        theme={isDarkMode ? darkTheme() : lightTheme()}
-      >
-        <ScaffoldEthApp>{children}</ScaffoldEthApp>
-      </RainbowKitProvider>
-    </WagmiConfig>
-    //   </DynamicWagmiConnector>
-     </DynamicContextProvider>
+      <DynamicWagmiConnector>
+        {/* <WagmiConfig config={wagmiConfig}> */}
+        <ProgressBar />
+        <RainbowKitProvider
+          chains={appChains.chains}
+          avatar={BlockieAvatar}
+          theme={isDarkMode ? darkTheme() : lightTheme()}
+        >
+          <ScaffoldEthApp>{children}</ScaffoldEthApp>
+        </RainbowKitProvider>
+        {/* </WagmiConfig> */}
+      </DynamicWagmiConnector>
+    </DynamicContextProvider>
   );
 };

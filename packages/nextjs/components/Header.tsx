@@ -7,21 +7,25 @@ import { usePathname } from "next/navigation";
 import { formatEther, parseEther } from "viem";
 import { useAccount } from "wagmi";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
+import { LenderRoles } from "~~/data/data";
 import { useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
 type HeaderMenuLink = {
   label: string;
   href: string;
+  isEnable?: boolean;
 };
 
 export const menuLinks: HeaderMenuLink[] = [
   {
     label: "Pools",
     href: "/markets",
+    isEnable: localStorage.getItem("role") === "Manager",
   },
   {
     label: "Portfolio",
     href: "/portfolio",
+    isEnable: true,
   },
 ];
 
@@ -30,8 +34,11 @@ export const HeaderMenuLinks = () => {
 
   return (
     <>
-      {menuLinks.map(({ label, href }) => {
+      {menuLinks.map(({ label, href, isEnable }) => {
         const isActive = pathname === href;
+        if (!isEnable) {
+          return;
+        }
         return (
           <li key={href}>
             <Link href={href} passHref className={`text-xl ${isActive ? "bg-letter" : "text-white text-xl"} `}>
@@ -64,7 +71,7 @@ export const Header = () => {
   });
 
   const balanceDai = balance !== undefined ? formatEther(balance) : "0";
-
+  const useGetRole = localStorage.getItem("role");
   return (
     <>
       <div className="Lender__header sticky top-0 z-20 justify-between flex-shrink-0 min-h-0 p-6 bg-transparent shadow-md lg:static background-svg navbar sm:px-2 ">
@@ -79,6 +86,7 @@ export const Header = () => {
           </ul>
         </div>
         <div className="flex-grow mr-4 navbar-end gap-7">
+          <p className="font-bold text-[#ffffff]">Role: {useGetRole}</p>
           <div className="flex gap-5">
             <div className="flex items-center gap-1">
               <span className="font-bold text-[#ffffff]">$ZBU:</span>

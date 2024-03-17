@@ -1,59 +1,12 @@
 import Image from "next/image";
+import { data, metrics, technology } from "./Constants";
 import type { NextPage } from "next";
+import OnboardingModal from "~~/components/OnboardingModal/OnboardingModal";
 
 const Home: NextPage = () => {
-  const data = [
-    {
-      name: "Morpho Blue",
-      description: "Permissionless Lending Protocol",
-      icon: "/image13.png",
-    },
-    {
-      name: "Captain Hooks",
-      description: "Custom UniswapV4 Pools",
-      icon: "/image12.png",
-    },
-    {
-      name: "Compound",
-      description: "Algorithmic, Autonomous Interest Rate Protocol",
-      icon: "/image14.png",
-    },
-  ];
-
-  const technology = [
-    {
-      name: "Custom Agreements",
-      description: "As a borrower you can choose your agreement from a set of available ones.",
-      icon: "/custom.png",
-    },
-    {
-      name: "Governance Allocations",
-      description: "Loans approvals for borrowers requests enhance the trust between our users.",
-      icon: "/bank.png",
-    },
-    {
-      name: "SBIT Repayments",
-      description: "Lock $SBIT earned after repayments.",
-      icon: "/money-bag.png",
-    },
-  ];
-
-  const metrics = [
-    {
-      name: "Market Size",
-      description: "91M",
-    },
-    {
-      name: "Total Value Locked",
-      description: "52.1M",
-    },
-    {
-      name: "Unique Active Addresses",
-      description: "249.7K",
-    },
-  ];
   return (
     <>
+      <OnboardingModal />
       <div className="flex flex-col items-stretch justify-center pt-10 gap-80">
         <div className="flex justify-between gap-28">
           <div className="w-[964px] my-24">

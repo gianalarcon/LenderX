@@ -67,7 +67,7 @@ export const Header = () => {
 
   return (
     <>
-      <div className="sticky top-0 z-20 justify-between flex-shrink-0 min-h-0 p-6 bg-transparent shadow-md lg:static background-svg navbar sm:px-2 ">
+      <div className="Lender__header sticky top-0 z-20 justify-between flex-shrink-0 min-h-0 p-6 bg-transparent shadow-md lg:static background-svg navbar sm:px-2 ">
         <div className="flex gap-3">
           <Link href="/" passHref className="items-center hidden gap-2 ml-4 mr-6 lg:flex shrink-0">
             <div>

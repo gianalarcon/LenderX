@@ -117,6 +117,10 @@ function MyLoans() {
         toast.error("No proposal found for this loan");
         return;
       } else {
+        console.log("🚀 ~ executeLoanAndWithdraw ~ pool:", pool);
+        console.log("🚀 ~ executeLoanAndWithdraw ~ proposal:", proposal);
+        console.log("🚀 ~ executeLoanAndWithdraw ~ LendingContract:", LendingContract);
+
         try {
           const result = await writeContract({
             abi: LendingContract!.abi,
@@ -129,6 +133,8 @@ function MyLoans() {
               keccak256(proposal[0].args.description),
             ],
           });
+          console.log("🚀 ~ executeLoanAndWithdraw ~ result:", result);
+
           toast.success(`successfully executed with tx hash : ${result.hash} `);
         } catch (e) {
           console.log(e);

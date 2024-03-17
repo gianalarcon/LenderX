@@ -36,8 +36,10 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
     <>
       <div className="flex flex-col min-h-screen bg-landing">
         <Header />
-        <main className={`flex flex-col items-center flex-1 margin-top ${spaceGrotesk.className}`}>{children}</main>
-        <Footer />
+        <main className={`Lender__container flex flex-col items-center flex-1 margin-top ${spaceGrotesk.className}`}>
+          {children}
+        </main>
+        {/* <Footer /> */}
       </div>
       <Toaster />
     </>

@@ -15,6 +15,11 @@ interface ModalProps {
   setShowCheap: () => void;
 }
 
+const LOAN_STATUS = {
+  approved: "Approved",
+  denied: "Denied",
+};
+
 function LocalLendingPanel({ address, setShowCheap }: ModalProps) {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("Overview");
@@ -196,32 +201,35 @@ function LocalLendingPanel({ address, setShowCheap }: ModalProps) {
               <span className="w-[160px] text-center"></span>
             </div>
             {loansDetails.map((loan, index) => {
+              console.log("🚀 ~ {loansDetails.map ~ loansDetails:", loansDetails);
               return (
                 <div className="flex gap-20 h-[95px] items-center p-8 border border-solid border-[#EAEBEF]" key={index}>
-                  <p className="w-[160px] text-center">{loan.borrower}</p>
-                  <p className="w-[160px] text-center">{loan.amount}</p>
+                  <p className="w-[160px] text-center Lender__trunk">{loan.borrower}</p>
+                  <p className="w-[160px] text-center">{loan.amount || "-"}</p>
                   <p className="w-[160px] text-center text-[#FFA876]">{loan.status}</p>
                   <p className="w-[160px] text-center">
                     {loan.status == "Pending" ? "Voting in progress" : "No Remarks"}
                   </p>
-                  <div className="flex gap-4">
-                    <button
-                      className="border border-solid border-[#4A5056] rounded-[7px] py-4 px-10"
-                      onClick={() => {
-                        rejectLoan(loan.loanId);
-                      }}
-                    >
-                      Reject
-                    </button>
-                    <button
-                      className="border border-solid border-[#4A5056] rounded-[7px] py-4 px-10"
-                      onClick={() => {
-                        approveLoan(loan.loanId);
-                      }}
-                    >
-                      Approve
-                    </button>
-                  </div>
+                  {loan.status !== LOAN_STATUS.approved && (
+                    <div className="flex gap-4">
+                      <button
+                        className="border border-solid border-[#4A5056] rounded-[7px] py-4 px-10"
+                        onClick={() => {
+                          rejectLoan(loan.loanId);
+                        }}
+                      >
+                        Reject
+                      </button>
+                      <button
+                        className="border border-solid border-[#4A5056] rounded-[7px] py-4 px-10"
+                        onClick={() => {
+                          approveLoan(loan.loanId);
+                        }}
+                      >
+                        Approve
+                      </button>
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -231,10 +239,6 @@ function LocalLendingPanel({ address, setShowCheap }: ModalProps) {
         return null;
     }
   };
-
-  // const handleGoBack = () => {
-  //   router.back();
-  // };
 
   return (
     <>

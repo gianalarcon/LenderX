@@ -3,10 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { DynamicWidget } from "@dynamic-labs/sdk-react-core";
+// import { DynamicWidget } from "@dynamic-labs/sdk-react-core";
 import { formatEther, parseEther } from "viem";
 import { useAccount } from "wagmi";
-import { FaucetButton } from "~~/components/scaffold-eth";
+import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 import { useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
 type HeaderMenuLink = {
@@ -67,7 +67,7 @@ export const Header = () => {
 
   return (
     <>
-      <div className="sticky top-0 z-20 justify-between flex-shrink-0 min-h-0 p-6 bg-transparent shadow-md lg:static background-svg navbar sm:px-2 ">
+      <div className="Lender__header sticky top-0 z-20 justify-between flex-shrink-0 min-h-0 p-6 bg-transparent shadow-md lg:static background-svg navbar sm:px-2 ">
         <div className="flex gap-3">
           <Link href="/" passHref className="items-center hidden gap-2 ml-4 mr-6 lg:flex shrink-0">
             <div>
@@ -86,14 +86,13 @@ export const Header = () => {
             </div>
             <button
               className="border border-white border-solid min-w-[70px] w-full rounded-[13px] py-1 px-4 text-white"
-              onClick={() => {
-                mint();
-              }}
+              onClick={() => mint()}
             >
               Mint
             </button>
           </div>
-          <DynamicWidget />
+          <RainbowKitCustomConnectButton />
+          {/* <DynamicWidget /> */}
           <FaucetButton />
         </div>
       </div>

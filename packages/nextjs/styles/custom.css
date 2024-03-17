@@ -1,0 +1,14 @@
+.Lender__header {
+  position: sticky !important;
+}
+
+.Lender__container {
+  min-height: 1200px;
+}
+
+.Lender__trunk {
+  max-width: 500px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

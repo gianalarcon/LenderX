@@ -62,7 +62,7 @@ function Table() {
   }, [pools]);
 
   return (
-    <div className="w-[1450px] flex flex-col text-white">
+    <div className="Lender__table w-[1450px] flex flex-col text-white">
       {poolAddressesLoading || poolsLoading ? (
         <>
           <div className="flex flex-col items-center justify-center gap-16 my-7">

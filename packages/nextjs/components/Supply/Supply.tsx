@@ -30,6 +30,7 @@ function Supply({ poolAddress }: SupplyProps) {
     watch: true,
   });
 
+  //TODO: improve
   const handleDeposit = async () => {
     try {
       const parsedAmount = parseEther(amount);
@@ -50,6 +51,7 @@ function Supply({ poolAddress }: SupplyProps) {
         args: [mockToken!.address, parsedAmount],
       });
       toast.success(`successfully deposited tokens at tx ${result.hash}`);
+      window.location.reload();
     } catch (e) {
       console.log(e);
       toast.error("Failed deposit");

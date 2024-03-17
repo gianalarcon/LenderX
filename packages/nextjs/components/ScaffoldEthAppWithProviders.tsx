@@ -50,12 +50,12 @@ export const ScaffoldEthAppWithProviders = ({ children }: { children: React.Reac
   const { isDarkMode } = useDarkMode();
 
   return (
-    // <DynamicContextProvider
-    //   settings={{
-    //     environmentId: "e67d5da1-bb11-4b3b-9da3-05c68a758856",
-    //     walletConnectors: [EthereumWalletConnectors],
-    //   }}
-    // >
+    <DynamicContextProvider
+      settings={{
+        environmentId: "e67d5da1-bb11-4b3b-9da3-05c68a758856",
+        walletConnectors: [EthereumWalletConnectors],
+      }}
+    >
     //   <DynamicWagmiConnector>
     <WagmiConfig config={wagmiConfig}>
       <ProgressBar />
@@ -68,6 +68,6 @@ export const ScaffoldEthAppWithProviders = ({ children }: { children: React.Reac
       </RainbowKitProvider>
     </WagmiConfig>
     //   </DynamicWagmiConnector>
-    // </DynamicContextProvider>
+     </DynamicContextProvider>
   );
 };

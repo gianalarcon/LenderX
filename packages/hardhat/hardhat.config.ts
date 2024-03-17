@@ -185,6 +185,10 @@ const config: HardhatUserConfig = {
           browserURL: "https://explorer.aurora.dev/",
         },
       },
+      {
+        network: "auroraMainnet",
+        chainId: 1313161554,
+      },
     ],
   },
   },

@@ -3,10 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-// import { DynamicWidget } from "@dynamic-labs/sdk-react-core";
+import { DynamicWidget } from "@dynamic-labs/sdk-react-core";
 import { formatEther, parseEther } from "viem";
 import { useAccount } from "wagmi";
-import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
+import { FaucetButton } from "~~/components/scaffold-eth";
 import { useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
 type HeaderMenuLink = {
@@ -91,8 +91,7 @@ export const Header = () => {
               Mint
             </button>
           </div>
-          <RainbowKitCustomConnectButton />
-          {/* <DynamicWidget /> */}
+          <DynamicWidget />
           <FaucetButton />
         </div>
       </div>
